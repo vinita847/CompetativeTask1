@@ -6,12 +6,12 @@ using System;
 
 namespace MarsFramework.Pages
 {
-    class SignIn: GlobalDefinitions
+    public class SignIn
     {
         public SignIn()
         {
             //PageFactory.InitElements(Global.GlobalDefinitions.driver, this);
-            PageFactory.InitElements(driver, this);
+            PageFactory.InitElements(GlobalDefinitions.driver, this);
 
         }
 
@@ -51,7 +51,7 @@ namespace MarsFramework.Pages
 
             SignInBtn.Click();
             //wait
-            wait(5);
+            GlobalDefinitions.wait(5);
             EenterEmail.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Email"));
             EnterPwd.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Password"));
             LogInBtn.Click();

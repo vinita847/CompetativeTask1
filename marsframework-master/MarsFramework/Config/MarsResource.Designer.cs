@@ -88,7 +88,7 @@ namespace MarsFramework.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to V:/marsframework-master/marsframework-master/MarsFramework/TestRports.
+        ///   Looks up a localized string similar to V:\marsframework-master\marsframework-master\MarsFramework\TestReport1\TestReport.html.
         /// </summary>
         public static string ReportPath {
             get {
@@ -97,7 +97,7 @@ namespace MarsFramework.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to V:\marsframework-master\marsframework-master\MarsFramework\ReportXML.
+        ///   Looks up a localized string similar to V:\marsframework-master\marsframework-master\MarsFramework\TestReport1\Report.xml.
         /// </summary>
         public static string ReportXMLPath {
             get {
@@ -106,7 +106,7 @@ namespace MarsFramework.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to V:/marsframework-master/marsframework-master/MarsFramework/ScreenShots.
+        ///   Looks up a localized string similar to V:\marsframework-master\marsframework-master\MarsFramework\TestReport1\Screenshots1\.
         /// </summary>
         public static string ScreenShotPath {
             get {

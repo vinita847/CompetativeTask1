@@ -9,7 +9,7 @@ using SeleniumExtras.PageObjects;
 
 namespace MarsFramework.Pages
 {
-    class ManageListings:GlobalDefinitions
+    public class ManageListings:GlobalDefinitions
     {
         public ManageListings()
         {

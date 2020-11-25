@@ -4,7 +4,7 @@ using SeleniumExtras.PageObjects;
 
 namespace MarsFramework
 {
-    internal class Profile
+    public class Profile
     {
 
         public Profile()

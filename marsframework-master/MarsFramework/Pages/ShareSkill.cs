@@ -6,7 +6,7 @@ using static MarsFramework.Global.GlobalDefinitions;
 
 namespace MarsFramework.Pages
 {
-    internal class ShareSkill
+    public class ShareSkill
     {
         public ShareSkill()
         {

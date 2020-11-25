@@ -12,6 +12,7 @@ using static MarsFramework.Global.GlobalDefinitions;
 
 
 
+
 namespace MarsFramework.Global
 {
     public class Base
@@ -23,11 +24,9 @@ namespace MarsFramework.Global
         public static string ExcelPath = MarsResource.ExcelPath;
         public static string ScreenshotPath = MarsResource.ScreenShotPath;
         public static string ReportPath = MarsResource.ReportPath;
+       
 
 
-        //public static string ExcelPath = @"V:\marsframework-master\marsframework-master\MarsFramework\Test Data\LogInData.xlsx";
-        //public static string ScreenshotPath = @"V:\marsframework-master\Screen_Shots";
-        //public static string ReportPath = "V:/marsframework-master/marsframework-master/MarsFramework/Test Rports";
         #endregion
 
         #region reports
@@ -56,7 +55,7 @@ namespace MarsFramework.Global
 
             }
             //nevigate to home page
-            driver.Navigate().GoToUrl("http://192.168.99.100:5000/Home");
+           driver.Navigate().GoToUrl("http://192.168.99.100:5000/Home");
 
             #region Initialise Reports
 
@@ -68,6 +67,7 @@ namespace MarsFramework.Global
 
             if (MarsResource.IsLogin == "true")
             {
+                
                 SignIn loginobj = new SignIn();
                 loginobj.LoginSteps();
 
@@ -101,9 +101,9 @@ namespace MarsFramework.Global
         public void TearDown()
         {
             // Screenshot
-            string img = SaveScreenShotClass.SaveScreenshot(driver, "Report"); // "V:/marsframework-master/marsframework-master/MarsFramework/Reports");//AddScreenCapture(@"E:\Dropbox\VisualStudio\Projects\Beehive\TestReports\ScreenShots\");
-            test.Log(LogStatus.Info,
-                "Image example: " + img);
+            string img = SaveScreenShotClass.SaveScreenshot(GlobalDefinitions.driver, "Screenshot");//AddScreenCapture(@"E:\Dropbox\VisualStudio\Projects\Beehive\TestReports\ScreenShots\");
+            ExtentTest test = extent.StartTest("My First Test", "Sample description");
+            test.Log(LogStatus.Info, "Image example: " + img);
             // end test. (Reports)
             extent.EndTest(test);
             // calling Flush writes everything to the log file (Reports)
