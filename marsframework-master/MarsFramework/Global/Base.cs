@@ -7,9 +7,7 @@ using OpenQA.Selenium.Firefox;
 using RelevantCodes.ExtentReports;
 using System;
 using System.IO;
-using static MarsFramework.Global.GlobalDefinitions;
-
-
+using MarsFramework.Global;
 
 
 
@@ -55,7 +53,7 @@ namespace MarsFramework.Global
 
             }
             //nevigate to home page
-           driver.Navigate().GoToUrl("http://192.168.99.100:5000/Home");
+           GlobalDefinitions.driver.Navigate().GoToUrl("http://192.168.99.100:5000/Home");
 
             #region Initialise Reports
 
@@ -73,16 +71,16 @@ namespace MarsFramework.Global
 
                 try
                 {
-                    string ExpectedUserName = "vinita";
+                    string ExpectedUserName = "Hi vinita";
                     //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
                     string ActualUserName = loginobj.ValidUserName.Text;
                     Assert.AreEqual(ExpectedUserName, ActualUserName);
-                    Console.WriteLine(ExpectedUserName);
+                    Console.WriteLine($"User name is correct as Expected {ExpectedUserName}");
 
                 }
                 catch (NoSuchElementException)
                 {
-                    Console.Write("User Name not found");
+                  Console.Write("User Name not found");
                 }
 
 
@@ -101,7 +99,7 @@ namespace MarsFramework.Global
         public void TearDown()
         {
             // Screenshot
-            string img = SaveScreenShotClass.SaveScreenshot(GlobalDefinitions.driver, "Screenshot");//AddScreenCapture(@"E:\Dropbox\VisualStudio\Projects\Beehive\TestReports\ScreenShots\");
+            string img = GlobalDefinitions.SaveScreenShotClass.SaveScreenshot(GlobalDefinitions.driver, "Screenshot");//AddScreenCapture(@"E:\Dropbox\VisualStudio\Projects\Beehive\TestReports\ScreenShots\");
             ExtentTest test = extent.StartTest("My First Test", "Sample description");
             test.Log(LogStatus.Info, "Image example: " + img);
             // end test. (Reports)
@@ -109,8 +107,8 @@ namespace MarsFramework.Global
             // calling Flush writes everything to the log file (Reports)
             extent.Flush();
             // Close the driver :)            
-            driver.Close();
-            driver.Quit();
+            GlobalDefinitions.driver.Close();
+            GlobalDefinitions.driver.Quit();
         }
         #endregion
 

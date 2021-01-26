@@ -2,7 +2,9 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using SeleniumExtras.PageObjects;
-using static MarsFramework.Global.GlobalDefinitions;
+using System.Threading;
+using System.Diagnostics;
+//using static MarsFramework.Global.GlobalDefinitions;
 
 namespace MarsFramework.Pages
 {
@@ -15,7 +17,7 @@ namespace MarsFramework.Pages
 
         //click on share skill
 
-        [FindsBy(How = How.LinkText, Using = "Share Skill")]
+        [FindsBy(How = How.XPath, Using = "//a[contains(text(), 'Share Skill')]")]
         public IWebElement ShareSkillTab { get; set; }
 
         //add title
@@ -100,13 +102,14 @@ namespace MarsFramework.Pages
         //click enter to add the tag
 
         //add work sample
-        [FindsBy(How = How.XPath, Using = "//i[@class='huge plus circle icon padding - 25']")]
+        [FindsBy(How = How.XPath, Using = "//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[9]/div[1]/div[2]/section[1]/div[1]/label[1]/div[1]/span[1]/i[1]")]
         public IWebElement AddWorkSample { get; set; }
 
         //select active
         [FindsBy(How = How.XPath, Using = "//input[@name='isActive' and @value='true']")]
         public IWebElement SelectActive { get; set; }
 
+       
         //selct hidden
         [FindsBy(How = How.XPath, Using = "//input[@name='isActive' and @value='false']")]
         public IWebElement SelectHidden { get; set; }
@@ -124,36 +127,51 @@ namespace MarsFramework.Pages
         
 
         public ManageListings AddSkill()
+
         {
 
             //initialize excel sheet by calling the ExcelLib
-            ExcelLib.PopulateInCollection(Base.ExcelPath, "AddShareSkill");
+            GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "AddShareSkill");
 
             ShareSkillTab.Click();
-            AddTitle.SendKeys(ExcelLib.ReadData(2, "Title"));
-            AddDescription.SendKeys(ExcelLib.ReadData(2, "Description"));
-            AddCategory.SendKeys(ExcelLib.ReadData(2, "Category"));
-            AddSubCategory.SendKeys(ExcelLib.ReadData(2, "Sub Category"));
+            //GlobalDefinitions.wait(10);
+            //wait for Title
+            GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, By.XPath("//input[@name='title']"), 10);
+            AddTitle.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Title"));
+            AddDescription.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Description"));
+            AddCategory.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Category"));
+            AddSubCategory.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Sub Category"));
 
-            AddTags.SendKeys(ExcelLib.ReadData(2, "Tags"));
+            AddTags.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Tags"));
             //will perform the enter button's functionality
             enterBtn.SendKeys(Keys.Return).Perform();
             AddServiceOneOff.Click();
             AddLocationOnline.Click();
-            AvailableStartDate.SendKeys(ExcelLib.ReadData(2, "Start Date"));
-            AvailableEndDate.SendKeys(ExcelLib.ReadData(2, "End Date"));
+            AvailableStartDate.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Start Date"));
+            AvailableEndDate.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "End Date"));
 
             AvailableDays.Click();
-            AvailableStartTime.SendKeys(ExcelLib.ReadData(2, "Start Time"));
-            AvailableEndTime.SendKeys(ExcelLib.ReadData(2, "End Time"));
+            AvailableStartTime.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Start Time"));
+            AvailableEndTime.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "End Time"));
             TradeSKillExchange.Click();
-            SKillExchangeTag.SendKeys(ExcelLib.ReadData(2, "Skill Exchange Tage"));
+            SKillExchangeTag.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Skill Exchange Tage"));
             //will perform the enter button's functionality
             enterBtn.SendKeys(Keys.Return).Perform();
+            AddWorkSample.Click();
+            Process.Start(@"V:\marsframework-master\marsframework-master\FileUploadScript.exe");
+            
             //AddWorkSample.SendKeys("file path");
             SelectActive.Click();
             SaveSkill.Click();
-            return new ManageListings();
+            //GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, By.XPath("//div[@class='ns-box ns-growl ns-effect-jelly ns-type-success ns-show']/div"), 30);
+            //string ActualMsg = GlobalDefinitions.driver.FindElement(By.XPath("//div[@class='ns-box ns-growl ns-effect-jelly ns-type-success ns-show']/div")).Text;
+            
+
+            //string ActualMsg = SkillAddedSuccessMsg.Text;
+            
+            
+            Thread.Sleep(3000);
+           return new ManageListings();
 
         }
 

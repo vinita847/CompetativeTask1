@@ -2,18 +2,16 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using SeleniumExtras.PageObjects;
-
-
-
+using System.Threading;
 
 
 namespace MarsFramework.Pages
 {
-    public class ManageListings:GlobalDefinitions
+    public class ManageListings
     {
         public ManageListings()
         {
-            PageFactory.InitElements(Global.GlobalDefinitions.driver, this);
+            PageFactory.InitElements(GlobalDefinitions.driver, this);
         }
 
 
@@ -57,7 +55,7 @@ namespace MarsFramework.Pages
         public IWebElement AddTags { get; set; }
 
         //click enter to add the tag
-        Actions enterBtn = new Actions(Global.GlobalDefinitions.driver);
+        Actions enterBtn = new Actions(GlobalDefinitions.driver);
 
         //Edit Available days
         [FindsBy(How = How.XPath, Using = "//label[contains(text(), 'Sat')]//preceding-sibling::input")]
@@ -87,21 +85,24 @@ namespace MarsFramework.Pages
         {
             //initialize excel sheet by calling the ExcelLib
 
-            ExcelLib.PopulateInCollection(Base.ExcelPath, "EditSkill");
+            GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "EditSkill");
 
             ManageListinTab.Click();
             EditSkillIcon.Click();
-            //Thread.Sleep(2000);
+            
             UpdateTitle.Clear();
-            UpdateTitle.SendKeys(ExcelLib.ReadData(2, "Title"));
+            UpdateTitle.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Title"));
             AddDescription.Clear();
-            AddDescription.SendKeys(ExcelLib.ReadData(2, "Description"));
-            AddTags.SendKeys(ExcelLib.ReadData(2, "Tags"));
+            AddDescription.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Description"));
+            AddTags.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Tags"));
             enterBtn.SendKeys(Keys.Return).Perform();
             AvailableDays.Click();
-            AvailableStartTime.SendKeys(ExcelLib.ReadData(2, "Start Time"));
-            AvailableEndTime.SendKeys(ExcelLib.ReadData(2, "End Time"));
+            AvailableStartTime.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Start Time"));
+            AvailableEndTime.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "End Time"));
             SaveSkill.Click();
+            //GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, By.XPath("//div[@class='ns-box ns-growl ns-effect-jelly ns-type-success ns-show']/div"), 10);
+
+            Thread.Sleep(2000);
             return new ManageListings();
 
 

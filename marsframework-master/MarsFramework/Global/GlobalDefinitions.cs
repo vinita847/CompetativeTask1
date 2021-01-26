@@ -8,7 +8,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
-using SeleniumExtras;
+
+
 
 
 
@@ -29,10 +30,10 @@ namespace MarsFramework.Global
         public static IWebElement WaitForElement(IWebDriver driver, By by, int timeOutinSeconds)
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeOutinSeconds));
-            return (wait.Until(ExpectedConditions.ElementIsVisible(by)));
+            return wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(by));
         }
         #endregion
-
+        
 
         #region Excel 
         public static class ExcelLib

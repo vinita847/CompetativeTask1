@@ -19,15 +19,19 @@ namespace MarsFramework
 
             [Test]
             public void AddSkill()
+            
             {
                 ShareSkill AddShareSkill = new ShareSkill();
                 AddShareSkill.AddSkill();
-                Thread.Sleep(2000);
+                //Thread.Sleep(2000);
                 try
                 {
                     string ExpectedMsg = "Service Listing Added successfully";
-                    //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+                    GlobalDefinitions.wait(10);
+                    //GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, By.XPath("//div[@class='ns-box ns-growl ns-effect-jelly ns-type-success ns-show']/div"), 10);
                     string ActulaMsg = AddShareSkill.SkillAddedSuccessMsg.Text;
+                    GlobalDefinitions.wait(10);
+
                     Assert.AreEqual(ExpectedMsg, ActulaMsg);
                     Console.WriteLine(ExpectedMsg);
 
@@ -37,7 +41,7 @@ namespace MarsFramework
                     Console.Write("Skill Add element not found");
                 }
 
-
+                
             }
 
             [Test]
@@ -49,8 +53,12 @@ namespace MarsFramework
                 try
                 {
                     string ExpectedUpdateMsg = "Service Listing Updated successfully";
-                    //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+                    //GlobalDefinitions.wait(10);
+
+                    //GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, By.XPath("//div[@class='ns-box ns-growl ns-effect-jelly ns-type-success ns-show']/div"), 10);
+
                     string ActualMsg = SkillEdit.SuccessMsg.Text;
+                    //GlobalDefinitions.wait(10);
 
                     Assert.AreEqual(ExpectedUpdateMsg, ActualMsg);
                     Console.WriteLine(ExpectedUpdateMsg);
@@ -69,7 +77,7 @@ namespace MarsFramework
             {
                 ManageListings SkillDelete = new ManageListings();
                 SkillDelete.DeleteExistingSkill();
-                Thread.Sleep(2000);
+                //Thread.Sleep(2000);
                 string ExpectedUpdateMsg = "Selenium has been deleted";
                 //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
                 string ActualMsg = SkillDelete.SuccessMsg.Text;
