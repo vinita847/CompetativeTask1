@@ -1,5 +1,5 @@
 ControlFocus("Open","","Edit1")
-ControlSetText("Open","","Edit1", "V:\VinitaText.docx")
-ControlClick("Open", "", "Button1")
+ControlSetText("Open","","Edit1", "V:\NotepadUpload.txt")
+ControlClick("Open", "&Open", "Button1")
 
 

@@ -42,7 +42,7 @@ namespace MarsFramework.Pages
         #endregion
 
         //write a method for this page operation here and call it in the programe
-        public Profile LoginSteps()
+        public void LoginSteps()
         {
 
             //initialize excel sheet by calling the ExcelLib
@@ -59,7 +59,6 @@ namespace MarsFramework.Pages
             //Wait for the user name is visible
             GlobalDefinitions.wait(30);
             //return the ProfilePageObject
-            return new Profile();
             
                        
 

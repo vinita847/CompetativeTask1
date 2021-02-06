@@ -81,7 +81,7 @@ namespace MarsFramework.Pages
 
 
 
-        public ManageListings EditExistingSkill()
+        public void EditExistingSkill()
         {
             //initialize excel sheet by calling the ExcelLib
 
@@ -102,11 +102,7 @@ namespace MarsFramework.Pages
             SaveSkill.Click();
             //GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, By.XPath("//div[@class='ns-box ns-growl ns-effect-jelly ns-type-success ns-show']/div"), 10);
 
-            Thread.Sleep(2000);
-            return new ManageListings();
-
-
-
+          
         }
 
         public void DeleteExistingSkill()

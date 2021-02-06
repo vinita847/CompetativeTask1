@@ -68,6 +68,7 @@ namespace MarsFramework.Global
                 
                 SignIn loginobj = new SignIn();
                 loginobj.LoginSteps();
+                GlobalDefinitions.wait(20);
 
                 try
                 {

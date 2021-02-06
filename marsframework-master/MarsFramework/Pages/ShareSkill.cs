@@ -102,7 +102,7 @@ namespace MarsFramework.Pages
         //click enter to add the tag
 
         //add work sample
-        [FindsBy(How = How.XPath, Using = "//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[9]/div[1]/div[2]/section[1]/div[1]/label[1]/div[1]/span[1]/i[1]")]
+        [FindsBy(How = How.XPath, Using = "//body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[9]/div[1]/div[2]/section[1]/div[1]/label[1]/div[1]/span[1]/i[1]")]
         public IWebElement AddWorkSample { get; set; }
 
         //select active
@@ -126,7 +126,7 @@ namespace MarsFramework.Pages
         public IWebElement SkillAddedSuccessMsg { get; set; }
         
 
-        public ManageListings AddSkill()
+        public void AddSkill()
 
         {
 
@@ -157,23 +157,18 @@ namespace MarsFramework.Pages
             SKillExchangeTag.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Skill Exchange Tage"));
             //will perform the enter button's functionality
             enterBtn.SendKeys(Keys.Return).Perform();
+            //Thread.Sleep(2000);
+            //find work sample icon and click
             AddWorkSample.Click();
-            Process.Start(@"V:\marsframework-master\marsframework-master\FileUploadScript.exe");
-            
+            Process.Start(@"V:\marsframework-master\marsframework-master\Upload.exe");
             //AddWorkSample.SendKeys("file path");
+            //GlobalDefinitions.wait(10);
+            //Thread.Sleep(5000);
             SelectActive.Click();
+            //Thread.Sleep(5000);
             SaveSkill.Click();
-            //GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, By.XPath("//div[@class='ns-box ns-growl ns-effect-jelly ns-type-success ns-show']/div"), 30);
-            //string ActualMsg = GlobalDefinitions.driver.FindElement(By.XPath("//div[@class='ns-box ns-growl ns-effect-jelly ns-type-success ns-show']/div")).Text;
-            
-
-            //string ActualMsg = SkillAddedSuccessMsg.Text;
-            
-            
-            Thread.Sleep(3000);
-           return new ManageListings();
-
-        }
+           
+         }
 
 
     }

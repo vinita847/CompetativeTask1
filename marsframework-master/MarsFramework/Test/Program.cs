@@ -28,7 +28,6 @@ namespace MarsFramework
                 {
                     string ExpectedMsg = "Service Listing Added successfully";
                     GlobalDefinitions.wait(10);
-                    //GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, By.XPath("//div[@class='ns-box ns-growl ns-effect-jelly ns-type-success ns-show']/div"), 10);
                     string ActulaMsg = AddShareSkill.SkillAddedSuccessMsg.Text;
                     GlobalDefinitions.wait(10);
 
@@ -53,12 +52,10 @@ namespace MarsFramework
                 try
                 {
                     string ExpectedUpdateMsg = "Service Listing Updated successfully";
-                    //GlobalDefinitions.wait(10);
-
-                    //GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, By.XPath("//div[@class='ns-box ns-growl ns-effect-jelly ns-type-success ns-show']/div"), 10);
+                    GlobalDefinitions.wait(20);
 
                     string ActualMsg = SkillEdit.SuccessMsg.Text;
-                    //GlobalDefinitions.wait(10);
+                    GlobalDefinitions.wait(10);
 
                     Assert.AreEqual(ExpectedUpdateMsg, ActualMsg);
                     Console.WriteLine(ExpectedUpdateMsg);
